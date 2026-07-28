@@ -1,7 +1,5 @@
 package controllers;
 
-import java.nio.file.Path;
-
 import models.MapPoint;
 import models.VisualizationMode;
 import persistence.FileGraphRepository;
@@ -26,12 +24,12 @@ public class MapController {
         this.currentMode = VisualizationMode.EXPLORATION;
     }
 
-    public void addPoint(String id, int y){
+    public void addPoint(String id, int x, int y){
         MapPoint point = new MapPoint(id, x, y);
         graph.add(point);
     }
     
-    public void addConection(MapPoint p1, MapPoint p2, boolean isBidirectional){
+    public void addConnection(MapPoint p1, MapPoint p2, boolean isBidirectional){
         if(isBidirectional){
             graph.addEdge(p1, p2);
         }else{

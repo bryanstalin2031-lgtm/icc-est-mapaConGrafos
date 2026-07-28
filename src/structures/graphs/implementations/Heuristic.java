@@ -1,5 +1,7 @@
 package structures.graphs.implementations;
 
-public class Heuristic {
+public interface Heuristic<T> {
+    double calculate(T current, T goal);
+
     
 }
