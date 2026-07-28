@@ -14,9 +14,9 @@ import structures.node.Node;
 
 public class AStarPathFinder<T> implements PathFinder<T> {
     
-    private Heuristic heuristic;
+    private Heuristic<T> heuristic;
 
-    public AStarPathFinder(Heuristic heuristic) {
+    public AStarPathFinder(Heuristic<T> heuristic) {
         this.heuristic = heuristic;
     }
 
