@@ -15,8 +15,6 @@ public class App {
 
         SwingUtilities.invokeLater(() -> {
             MapController controller = new MapController();
-            
-            // --- 1. DEFINICIÓN DE TODOS LOS NODOS ---
             controller.addPoint("n1", 33, 27);
             controller.addPoint("Parque Miraflores", 122, 84);
             controller.addPoint("n2", 67, 137);
@@ -87,8 +85,6 @@ public class App {
             controller.addPoint("n65", 555, 393);
             controller.addPoint("n66", 1436, 44);
             controller.addPoint("n67", 524, 672);
-
-            // --- 2. CONEXIÓN ENTRE NODOS (ARISTAS) ---
             conectar(controller, "n1", "Parque Miraflores");
             conectar(controller, "Parque Miraflores", "n10");
             conectar(controller, "Parque Miraflores", "n2");
