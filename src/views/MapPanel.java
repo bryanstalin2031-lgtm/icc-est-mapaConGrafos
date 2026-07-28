@@ -36,14 +36,18 @@ public class MapPanel extends JPanel {
     public MapPanel(MapController controller, MainFrame parentFrame) {
         this.controller = controller;
         this.parentFrame = parentFrame;
-
         try {
-            backgroundImage = ImageIO.read(new File("/Users/bryan/Documents/icc-est-mapaConGrafos/src/resources/maps/map.png"));
-            System.out.println("¡Imagen de fondo cargada con éxito!");
+            File archivoImagen = new File("src/resources/maps/map.png"); 
+            if (archivoImagen.exists()) {
+                backgroundImage = ImageIO.read(archivoImagen);
+                System.out.println(archivoImagen.getPath());
+                repaint(); 
+            } else {
+                System.out.println("No se encontró el archivo de imagen");
+            }
         } catch (Exception e) {
-            System.out.println("Error al cargar la imagen: " + e.getMessage());
+            System.out.println("Error al leer la imagen: " + e.getMessage());
         }
-
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
