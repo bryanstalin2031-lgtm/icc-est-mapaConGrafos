@@ -165,6 +165,11 @@ Proceso paso a paso:
 ---
 
 ## 10. Tabla Comparativa de Resultados
+
+---
+
 ## 11. Conclusión Individual por Integrante
 * Bryam Carchi: La realización de estructuras de grafos personalizadas me permitió comprender de mejor manera la diferencia entre recorridos ciegos (BFS/DFS) y algoritmos con mejor optimizacion de rutas (Dijkstra/A*), en donde mediante la ejecucuion se visualizo que el A* nos dio la mejor ruta, esta fue la mas directa y gastando menos recursos.
+
+---
 ## 12. Recomendaciones y Posibles Aplicaciones Futuras
