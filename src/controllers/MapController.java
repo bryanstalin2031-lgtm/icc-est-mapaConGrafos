@@ -81,6 +81,9 @@ public class MapController {
     public VisualizationMode getVisualizationMode() {
         return currentMode;
     }
+    public void removePoint(MapPoint point) {
+    graph.remove(point);
+}
 }
 
 

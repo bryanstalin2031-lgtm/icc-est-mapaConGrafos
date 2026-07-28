@@ -23,7 +23,8 @@ public class MainFrame extends JFrame {
         this.controlador = controlador;
         this.setTitle("Sistema de Búsqueda de Rutas - Universidad");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(1000, 700);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setLocationRelativeTo(null);
         this.setLayout(new BorderLayout());
 
         inicializarBarraMenu();
@@ -68,6 +69,7 @@ public class MainFrame extends JFrame {
         JMenu menuEdicion = new JMenu("Edición Interactiva");
         JMenuItem itemAgregarNodo = new JMenuItem("Modo: Agregar Nodos (Clic en mapa)");
         JMenuItem itemConectarNodos = new JMenuItem("Modo: Conectar Nodos (Clic en 2 nodos)");
+        JMenuItem itemEliminarNodo = new JMenuItem("Modo: Eliminar Nodo (Clic en nodo)");
         JMenuItem itemSalirEdicion = new JMenuItem("Salir de Modo Edición");
 
         itemAgregarNodo.addActionListener(e -> {
@@ -80,12 +82,18 @@ public class MainFrame extends JFrame {
             JOptionPane.showMessageDialog(this, "Haz clic en el nodo de inicio y luego en el de destino.");
         });
 
+        itemEliminarNodo.addActionListener(e -> {
+            panelMapa.setEditMode(MapPanel.EditMode.DELETE_NODE);
+            JOptionPane.showMessageDialog(this, "Haz clic sobre cualquier nodo para eliminarlo junto con sus conexiones.");
+        });
+
         itemSalirEdicion.addActionListener(e -> {
             panelMapa.setEditMode(MapPanel.EditMode.NONE);
         });
 
         menuEdicion.add(itemAgregarNodo);
         menuEdicion.add(itemConectarNodos);
+        menuEdicion.add(itemEliminarNodo);
         menuEdicion.addSeparator();
         menuEdicion.add(itemSalirEdicion);
 
@@ -102,14 +110,14 @@ public class MainFrame extends JFrame {
         cbNodoDestino = new JComboBox<>();
         actualizarSelectoresNodos();
 
-        cbAlgoritmo = new JComboBox<>(new String[]{"BFS", "DFS", "DIJKSTRA", "ASTAR"});
+        cbAlgoritmo = new JComboBox<>(new String[] { "BFS", "DFS", "DIJKSTRA", "ASTAR" });
         cbModo = new JComboBox<>(VisualizationMode.values());
 
         JButton btnIniciar = new JButton("Iniciar Recorrido");
         JButton btnLimpiar = new JButton("Limpiar Mapa");
 
         btnIniciar.addActionListener(e -> ejecutarBusqueda());
-        btnLimpiar.addActionListener(e -> panelMapa.clearPath());
+        btnLimpiar.addActionListener(e -> panelMapa.limpiarCamino());
 
         panelControl.add(new JLabel("Inicio:"));
         panelControl.add(cbNodoInicio);
@@ -145,7 +153,8 @@ public class MainFrame extends JFrame {
         VisualizationMode modo = (VisualizationMode) cbModo.getSelectedItem();
 
         if (inicio == null || destino == null) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un nodo de inicio y destino.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un nodo de inicio y destino.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -153,9 +162,10 @@ public class MainFrame extends JFrame {
         PathResult<MapPoint> resultado = controlador.executeSearch(algoritmo, inicio, destino);
 
         if (resultado.getPath().isEmpty() && !inicio.equals(destino)) {
-            JOptionPane.showMessageDialog(this, "No se encontró una ruta entre los nodos seleccionados.", "Información", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No se encontró una ruta entre los nodos seleccionados.", "Información",
+                    JOptionPane.INFORMATION_MESSAGE);
         }
 
-        panelMapa.startAnimation(resultado, modo);
+        panelMapa.iniciarAnimacion(resultado, modo);
     }
 }

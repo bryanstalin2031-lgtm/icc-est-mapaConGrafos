@@ -1,5 +1,223 @@
+import controllers.MapController;
+import models.MapPoint;
+import views.MainFrame;
+
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+
 public class App {
-    public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+    public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        SwingUtilities.invokeLater(() -> {
+            MapController controller = new MapController();
+            
+            // --- 1. DEFINICIÓN DE TODOS LOS NODOS ---
+            controller.addPoint("n1", 33, 27);
+            controller.addPoint("Parque Miraflores", 122, 84);
+            controller.addPoint("n2", 67, 137);
+            controller.addPoint("n3", 65, 257);
+            controller.addPoint("n4", 142, 361);
+            controller.addPoint("n5", 30, 326);
+            controller.addPoint("n6", 19, 417);
+            controller.addPoint("n7", 65, 426);
+            controller.addPoint("n8", 86, 339);
+            controller.addPoint("n10", 222, 60);
+            controller.addPoint("n11", 351, 44);
+            controller.addPoint("n12", 382, 6);
+            controller.addPoint("Av Turuhuayco", 526, 60);
+            controller.addPoint("n14", 483, 148);
+            controller.addPoint("n16", 765, 148);
+            controller.addPoint("n17", 837, 34);
+            controller.addPoint("n13", 905, 206);
+            controller.addPoint("n9", 233, 480);
+            controller.addPoint("n18", 12, 502);
+            controller.addPoint("n19", 86, 527);
+            controller.addPoint("n20", 352, 487);
+            controller.addPoint("n21", 581, 412);
+            controller.addPoint("n22", 741, 341);
+            controller.addPoint("n23", 946, 226);
+            controller.addPoint("n24", 1236, 75);
+            controller.addPoint("n25", 1378, 23);
+            controller.addPoint("n26", 1281, 20);
+            controller.addPoint("n27", 1024, 149);
+            controller.addPoint("n28", 994, 122);
+            controller.addPoint("n29", 1079, 10);
+            controller.addPoint("n30", 1455, 436);
+            controller.addPoint("n31", 1133, 297);
+            controller.addPoint("n32", 1300, 360);
+            controller.addPoint("n33", 1315, 158);
+            controller.addPoint("n34", 1248, 147);
+            controller.addPoint("n35", 1089, 153);
+            controller.addPoint("n36", 1142, 639);
+            controller.addPoint("n37", 1392, 821);
+            controller.addPoint("n38", 1438, 252);
+            controller.addPoint("Universidad Politecnica Salesiana", 1287, 544);
+            controller.addPoint("n39", 971, 758);
+            controller.addPoint("n40", 875, 818);
+            controller.addPoint("n41", 802, 755);
+            controller.addPoint("n42", 737, 712);
+            controller.addPoint("n43", 692, 677);
+            controller.addPoint("n44", 625, 742);
+            controller.addPoint("n45", 555, 824);
+            controller.addPoint("n46", 671, 781);
+            controller.addPoint("n47", 739, 824);
+            controller.addPoint("n48", 750, 590);
+            controller.addPoint("n49", 794, 540);
+            controller.addPoint("n50", 933, 405);
+            controller.addPoint("n51", 1057, 271);
+            controller.addPoint("n52", 831, 325);
+            controller.addPoint("n53", 687, 469);
+            controller.addPoint("n54", 662, 492);
+            controller.addPoint("n55", 526, 642);
+            controller.addPoint("n56", 413, 564);
+            controller.addPoint("n57", 439, 731);
+            controller.addPoint("n58", 340, 830);
+            controller.addPoint("n59", 410, 753);
+            controller.addPoint("n60", 270, 675);
+            controller.addPoint("n61", 175, 599);
+            controller.addPoint("n62", 22, 704);
+            controller.addPoint("n63", 232, 701);
+            controller.addPoint("n64", 181, 816);
+            controller.addPoint("n15", 779, 289);
+            controller.addPoint("n65", 555, 393);
+            controller.addPoint("n66", 1436, 44);
+            controller.addPoint("n67", 524, 672);
+
+            // --- 2. CONEXIÓN ENTRE NODOS (ARISTAS) ---
+            conectar(controller, "n1", "Parque Miraflores");
+            conectar(controller, "Parque Miraflores", "n10");
+            conectar(controller, "Parque Miraflores", "n2");
+            conectar(controller, "n2", "n3");
+            conectar(controller, "n3", "n4");
+            conectar(controller, "n4", "n8");
+            conectar(controller, "n4", "n9");
+            conectar(controller, "n5", "n8");
+            conectar(controller, "n5", "n6");
+            conectar(controller, "n6", "n7");
+            conectar(controller, "n7", "n8");
+            conectar(controller, "n8", "n4");
+            conectar(controller, "n8", "n5");
+            conectar(controller, "n8", "n7");
+            conectar(controller, "n10", "n11");
+            conectar(controller, "n11", "n12");
+            conectar(controller, "n12", "Av Turuhuayco");
+            conectar(controller, "Av Turuhuayco", "n14");
+            conectar(controller, "Av Turuhuayco", "n16");
+            conectar(controller, "n14", "n15");
+            conectar(controller, "n16", "n17");
+            conectar(controller, "n16", "n13");
+            conectar(controller, "n13", "n15");
+            conectar(controller, "n13", "n27");
+            conectar(controller, "n13", "n23");
+            conectar(controller, "n9", "n4");
+            conectar(controller, "n9", "n65");
+            conectar(controller, "n9", "n18");
+            conectar(controller, "n18", "n19");
+            conectar(controller, "n19", "n20");
+            conectar(controller, "n19", "n61");
+            conectar(controller, "n20", "n21");
+            conectar(controller, "n20", "n56");
+            conectar(controller, "n21", "n22");
+            conectar(controller, "n21", "n54");
+            conectar(controller, "n22", "n23");
+            conectar(controller, "n23", "n51");
+            conectar(controller, "n23", "n35");
+            conectar(controller, "n23", "n52");
+            conectar(controller, "n24", "n25");
+            conectar(controller, "n24", "n34");
+            conectar(controller, "n24", "n35");
+            conectar(controller, "n25", "n26");
+            conectar(controller, "n26", "n27");
+            conectar(controller, "n27", "n28");
+            conectar(controller, "n28", "n29");
+            conectar(controller, "n30", "Universidad Politecnica Salesiana");
+            conectar(controller, "n30", "n32");
+            conectar(controller, "n31", "n33");
+            conectar(controller, "n31", "n51");
+            conectar(controller, "n31", "n32");
+            conectar(controller, "n32", "n38");
+            conectar(controller, "n33", "n34");
+            conectar(controller, "n33", "n38");
+            conectar(controller, "n33", "n66");
+            conectar(controller, "n35", "n24");
+            conectar(controller, "n36", "n39");
+            conectar(controller, "n36", "Universidad Politecnica Salesiana");
+            conectar(controller, "n36", "n37");
+            conectar(controller, "n38", "n33");
+            conectar(controller, "n38", "n32");
+            conectar(controller, "n39", "n48");
+            conectar(controller, "n39", "n40");
+            conectar(controller, "n40", "n41");
+            conectar(controller, "n41", "n42");
+            conectar(controller, "n41", "n47");
+            conectar(controller, "n42", "n43");
+            conectar(controller, "n42", "n46");
+            conectar(controller, "n43", "n48");
+            conectar(controller, "n43", "n44");
+            conectar(controller, "n44", "n46");
+            conectar(controller, "n44", "n45");
+            conectar(controller, "n44", "n67");
+            conectar(controller, "n45", "n57");
+            conectar(controller, "n46", "n47");
+            conectar(controller, "n48", "n49");
+            conectar(controller, "n49", "n53");
+            conectar(controller, "n49", "n50");
+            conectar(controller, "n50", "n52");
+            conectar(controller, "n50", "n51");
+            conectar(controller, "n51", "n50");
+            conectar(controller, "n52", "n53");
+            conectar(controller, "n52", "n50");
+            conectar(controller, "n53", "n54");
+            conectar(controller, "n53", "n49");
+            conectar(controller, "n53", "n52");
+            conectar(controller, "n54", "n55");
+            conectar(controller, "n54", "n21");
+            conectar(controller, "n55", "n57");
+            conectar(controller, "n55", "n56");
+            conectar(controller, "n55", "n67");
+            conectar(controller, "n56", "n20");
+            conectar(controller, "n57", "n59");
+            conectar(controller, "n57", "n45");
+            conectar(controller, "n58", "n59");
+            conectar(controller, "n59", "n60");
+            conectar(controller, "n59", "n58");
+            conectar(controller, "n60", "n61");
+            conectar(controller, "n60", "n63");
+            conectar(controller, "n60", "n59");
+            conectar(controller, "n61", "n19");
+            conectar(controller, "n62", "n63");
+            conectar(controller, "n63", "n60");
+            conectar(controller, "n63", "n62");
+            conectar(controller, "n63", "n64");
+            conectar(controller, "n64", "n63");
+            conectar(controller, "n15", "n14");
+            conectar(controller, "n15", "n65");
+            conectar(controller, "n15", "n13");
+            conectar(controller, "n65", "n9");
+            conectar(controller, "n66", "n33");
+            conectar(controller, "n67", "n44");
+            conectar(controller, "n67", "n55");
+            MainFrame frame = new MainFrame(controller);
+            frame.setVisible(true);
+        });
+    }
+
+    private static void conectar(MapController controller, String id1, String id2) {
+        models.MapPoint p1 = null;
+        models.MapPoint p2 = null;
+        
+        for (structures.node.Node<models.MapPoint> node : controller.getGraph().getNodes()) {
+            if (node.getValue().getId().equals(id1)) p1 = node.getValue();
+            if (node.getValue().getId().equals(id2)) p2 = node.getValue();
+        }
+        
+        if (p1 != null && p2 != null) {
+            controller.addConnection(p1, p2, true);
+        }
     }
 }

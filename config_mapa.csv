@@ -1,0 +1,244 @@
+NODE,n1,33,27
+NODE,Parque Miraflores,122,84
+NODE,n2,67,137
+NODE,n3,65,257
+NODE,n4,142,361
+NODE,n5,30,326
+NODE,n6,19,417
+NODE,n7,65,426
+NODE,n8,86,339
+NODE,n10,222,60
+NODE,n11,351,44
+NODE,n12,382,6
+NODE,Av Turuhuayco,526,60
+NODE,n14,483,148
+NODE,n16,765,148
+NODE,n17,837,34
+NODE,n13,905,206
+NODE,n9,233,480
+NODE,n18,12,502
+NODE,n19,86,527
+NODE,n20,352,487
+NODE,n21,581,412
+NODE,n22,741,341
+NODE,n23,946,226
+NODE,n24,1236,75
+NODE,n25,1378,23
+NODE,n26,1281,20
+NODE,n27,1024,149
+NODE,n28,994,122
+NODE,n29,1079,10
+NODE,n30,1455,436
+NODE,n31,1133,297
+NODE,n32,1300,360
+NODE,n33,1315,158
+NODE,n34,1248,147
+NODE,n35,1089,153
+NODE,n36,1142,639
+NODE,n37,1392,821
+NODE,n38,1438,252
+NODE,Universidad Politecnica Salesiana,1287,544
+NODE,n39,971,758
+NODE,n40,875,818
+NODE,n41,802,755
+NODE,n42,737,712
+NODE,n43,692,677
+NODE,n44,625,742
+NODE,n45,555,824
+NODE,n46,671,781
+NODE,n47,739,824
+NODE,n48,750,590
+NODE,n49,794,540
+NODE,n50,933,405
+NODE,n51,1057,271
+NODE,n52,831,325
+NODE,n53,687,469
+NODE,n54,662,492
+NODE,n55,526,642
+NODE,n56,413,564
+NODE,n57,439,731
+NODE,n58,340,830
+NODE,n59,410,753
+NODE,n60,270,675
+NODE,n61,175,599
+NODE,n62,22,704
+NODE,n63,232,701
+NODE,n64,181,816
+NODE,n15,779,289
+NODE,n65,555,393
+NODE,n66,1436,44
+NODE,n67,524,672
+EDGE,n1,Parque Miraflores, true
+EDGE,Parque Miraflores,n1, true
+EDGE,Parque Miraflores,n10, true
+EDGE,Parque Miraflores,n2, true
+EDGE,n2,Parque Miraflores, true
+EDGE,n2,n3, true
+EDGE,n3,n2, true
+EDGE,n3,n4, true
+EDGE,n4,n3, true
+EDGE,n4,n8, true
+EDGE,n4,n9, true
+EDGE,n5,n8, true
+EDGE,n5,n6, true
+EDGE,n6,n5, true
+EDGE,n6,n7, true
+EDGE,n7,n8, true
+EDGE,n7,n6, true
+EDGE,n8,n4, true
+EDGE,n8,n5, true
+EDGE,n8,n7, true
+EDGE,n10,Parque Miraflores, true
+EDGE,n10,n11, true
+EDGE,n11,n10, true
+EDGE,n11,n12, true
+EDGE,n12,n11, true
+EDGE,n12,Av Turuhuayco, true
+EDGE,Av Turuhuayco,n12, true
+EDGE,Av Turuhuayco,n14, true
+EDGE,Av Turuhuayco,n16, true
+EDGE,n14,Av Turuhuayco, true
+EDGE,n14,n15, true
+EDGE,n16,Av Turuhuayco, true
+EDGE,n16,n17, true
+EDGE,n16,n13, true
+EDGE,n17,n16, true
+EDGE,n13,n16, true
+EDGE,n13,n15, true
+EDGE,n13,n27, true
+EDGE,n13,n23, true
+EDGE,n9,n4, true
+EDGE,n9,n65, true
+EDGE,n9,n18, true
+EDGE,n18,n9, true
+EDGE,n18,n19, true
+EDGE,n19,n20, true
+EDGE,n19,n18, true
+EDGE,n19,n61, true
+EDGE,n20,n21, true
+EDGE,n20,n19, true
+EDGE,n20,n56, true
+EDGE,n21,n22, true
+EDGE,n21,n20, true
+EDGE,n21,n54, true
+EDGE,n22,n23, true
+EDGE,n22,n21, true
+EDGE,n23,n51, true
+EDGE,n23,n35, true
+EDGE,n23,n22, true
+EDGE,n23,n52, true
+EDGE,n23,n13, true
+EDGE,n24,n25, true
+EDGE,n24,n34, true
+EDGE,n24,n35, true
+EDGE,n25,n26, true
+EDGE,n25,n24, true
+EDGE,n26,n27, true
+EDGE,n26,n25, true
+EDGE,n27,n13, true
+EDGE,n27,n28, true
+EDGE,n27,n26, true
+EDGE,n28,n27, true
+EDGE,n28,n29, true
+EDGE,n29,n28, true
+EDGE,n30,Universidad Politecnica Salesiana, true
+EDGE,n30,n32, true
+EDGE,n31,n33, true
+EDGE,n31,n51, true
+EDGE,n31,n32, true
+EDGE,n32,n30, true
+EDGE,n32,n31, true
+EDGE,n32,n38, true
+EDGE,n33,n34, true
+EDGE,n33,n38, true
+EDGE,n33,n31, true
+EDGE,n33,n66, true
+EDGE,n34,n24, true
+EDGE,n34,n33, true
+EDGE,n35,n24, true
+EDGE,n35,n23, true
+EDGE,n36,n39, true
+EDGE,n36,Universidad Politecnica Salesiana, true
+EDGE,n36,n37, true
+EDGE,n37,n36, true
+EDGE,n38,n33, true
+EDGE,n38,n32, true
+EDGE,Universidad Politecnica Salesiana,n36, true
+EDGE,Universidad Politecnica Salesiana,n30, true
+EDGE,n39,n48, true
+EDGE,n39,n36, true
+EDGE,n39,n40, true
+EDGE,n40,n39, true
+EDGE,n40,n41, true
+EDGE,n41,n40, true
+EDGE,n41,n42, true
+EDGE,n41,n47, true
+EDGE,n42,n43, true
+EDGE,n42,n41, true
+EDGE,n42,n46, true
+EDGE,n43,n42, true
+EDGE,n43,n48, true
+EDGE,n43,n44, true
+EDGE,n44,n43, true
+EDGE,n44,n46, true
+EDGE,n44,n45, true
+EDGE,n44,n67, true
+EDGE,n45,n44, true
+EDGE,n45,n57, true
+EDGE,n46,n44, true
+EDGE,n46,n42, true
+EDGE,n46,n47, true
+EDGE,n47,n41, true
+EDGE,n47,n46, true
+EDGE,n48,n49, true
+EDGE,n48,n39, true
+EDGE,n48,n43, true
+EDGE,n49,n53, true
+EDGE,n49,n50, true
+EDGE,n49,n48, true
+EDGE,n50,n52, true
+EDGE,n50,n49, true
+EDGE,n50,n51, true
+EDGE,n51,n31, true
+EDGE,n51,n23, true
+EDGE,n51,n50, true
+EDGE,n52,n53, true
+EDGE,n52,n50, true
+EDGE,n52,n23, true
+EDGE,n53,n54, true
+EDGE,n53,n49, true
+EDGE,n53,n52, true
+EDGE,n54,n55, true
+EDGE,n54,n21, true
+EDGE,n54,n53, true
+EDGE,n55,n57, true
+EDGE,n55,n56, true
+EDGE,n55,n54, true
+EDGE,n55,n67, true
+EDGE,n56,n55, true
+EDGE,n56,n20, true
+EDGE,n57,n59, true
+EDGE,n57,n55, true
+EDGE,n57,n45, true
+EDGE,n58,n59, true
+EDGE,n59,n60, true
+EDGE,n59,n57, true
+EDGE,n59,n58, true
+EDGE,n60,n61, true
+EDGE,n60,n63, true
+EDGE,n60,n59, true
+EDGE,n61,n19, true
+EDGE,n61,n60, true
+EDGE,n62,n63, true
+EDGE,n63,n60, true
+EDGE,n63,n62, true
+EDGE,n63,n64, true
+EDGE,n64,n63, true
+EDGE,n15,n14, true
+EDGE,n15,n65, true
+EDGE,n15,n13, true
+EDGE,n65,n15, true
+EDGE,n65,n9, true
+EDGE,n66,n33, true
+EDGE,n67,n44, true
+EDGE,n67,n55, true

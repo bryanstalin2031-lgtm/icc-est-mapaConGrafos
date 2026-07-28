@@ -12,7 +12,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.InputStream;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -29,25 +29,21 @@ public class MapPanel extends JPanel {
     private int visitedIndex = 0;
     private int pathIndex = 0;
     
-    public enum EditMode { NONE, ADD_NODE, ADD_EDGE_START, ADD_EDGE_END }
+    public enum EditMode { NONE, ADD_NODE, ADD_EDGE_START, ADD_EDGE_END, DELETE_NODE }
     private EditMode currentEditMode = EditMode.NONE;
     private MapPoint tempEdgeStart = null;
 
     public MapPanel(MapController controller, MainFrame parentFrame) {
         this.controller = controller;
         this.parentFrame = parentFrame;
-        
-        try (InputStream is = getClass().getResourceAsStream("/resource/map.png")) {
-            if (is != null) {
-                backgroundImage = ImageIO.read(is);
-            } else {
-                System.err.println("No se encontró la imagen del mapa en /resource/map.png");
-            }
+
+        try {
+            backgroundImage = ImageIO.read(new File("/Users/bryan/Documents/icc-est-mapaConGrafos/src/resources/maps/map.png"));
+            System.out.println("¡Imagen de fondo cargada con éxito!");
         } catch (Exception e) {
-            System.err.println("Error al cargar la imagen del mapa: " + e.getMessage());
+            System.out.println("Error al cargar la imagen: " + e.getMessage());
         }
 
-        // Listener para la edición interactiva sobre el lienzo del mapa
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -67,7 +63,7 @@ public class MapPanel extends JPanel {
                 repaint();
             }
         } else if (currentEditMode == EditMode.ADD_EDGE_START) {
-            tempEdgeStart = findNodeAt(e.getX(), e.getY());
+            tempEdgeStart = encontrarNodoEn(e.getX(), e.getY());
             if (tempEdgeStart != null) {
                 currentEditMode = EditMode.ADD_EDGE_END;
                 JOptionPane.showMessageDialog(MapPanel.this, 
@@ -75,7 +71,7 @@ public class MapPanel extends JPanel {
                         "Conectar Nodos", JOptionPane.INFORMATION_MESSAGE);
             }
         } else if (currentEditMode == EditMode.ADD_EDGE_END) {
-            MapPoint tempEdgeEnd = findNodeAt(e.getX(), e.getY());
+            MapPoint tempEdgeEnd = encontrarNodoEn(e.getX(), e.getY());
             if (tempEdgeEnd != null && !tempEdgeEnd.equals(tempEdgeStart)) {
                 controller.addConnection(tempEdgeStart, tempEdgeEnd, true);
                 currentEditMode = EditMode.ADD_EDGE_START;
@@ -86,6 +82,22 @@ public class MapPanel extends JPanel {
                 currentEditMode = EditMode.ADD_EDGE_START;
                 tempEdgeStart = null;
             }
+        } else if (currentEditMode == EditMode.DELETE_NODE) {
+            MapPoint nodeToDelete = encontrarNodoEn(e.getX(), e.getY());
+            if (nodeToDelete != null) {
+                int confirm = JOptionPane.showConfirmDialog(MapPanel.this, 
+                        "¿Deseas eliminar el nodo '" + nodeToDelete.getId() + "' y todas sus calles?", 
+                        "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+                
+                if (confirm == JOptionPane.YES_OPTION) {
+                    controller.removePoint(nodeToDelete);
+                    if (parentFrame != null) {
+                        parentFrame.actualizarSelectoresNodos();
+                    }
+                    repaint();
+                    JOptionPane.showMessageDialog(MapPanel.this, "Nodo eliminado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
         }
     }
 
@@ -94,7 +106,7 @@ public class MapPanel extends JPanel {
         this.tempEdgeStart = null;
     }
 
-    private MapPoint findNodeAt(int x, int y) {
+    private MapPoint encontrarNodoEn(int x, int y) {
         if (controller == null || controller.getGraph() == null) return null;
 
         for (Node<MapPoint> node : controller.getGraph().getNodes()) {
@@ -106,8 +118,8 @@ public class MapPanel extends JPanel {
         return null;
     }
 
-    public void startAnimation(PathResult<MapPoint> result, VisualizationMode mode) {
-        stopAnimation();
+    public void iniciarAnimacion(PathResult<MapPoint> result, VisualizationMode mode) {
+        detenerAnimacion();
         this.visitedList = new ArrayList<>(result.getVisitados());
         this.pathList = new ArrayList<>(result.getPath());
         this.visitedIndex = 0;
@@ -126,8 +138,8 @@ public class MapPanel extends JPanel {
         timer.start();
     }
 
-    public void clearPath() {
-        stopAnimation();
+    public void limpiarCamino() {
+        detenerAnimacion();
         visitedList.clear();
         pathList.clear();
         visitedIndex = 0;
@@ -135,7 +147,7 @@ public class MapPanel extends JPanel {
         repaint();
     }
 
-    private void stopAnimation() {
+    private void detenerAnimacion() {
         if (timer != null && timer.isRunning()) {
             timer.stop();
         }
@@ -178,6 +190,8 @@ public class MapPanel extends JPanel {
                 MapPoint p2 = pathList.get(i + 1);
                 g2d.drawLine(p1.getX(), p1.getY(), p2.getX(), p2.getY());
             }
+            g2d.setColor(Color.GREEN);
+            // Nota: Color verde personalizado seguro abajo
             g2d.setColor(new Color(50, 205, 50));
             for (int i = 0; i < pathIndex; i++) {
                 MapPoint p = pathList.get(i);
@@ -191,7 +205,6 @@ public class MapPanel extends JPanel {
             g2d.fillOval(p.getX() - 6, p.getY() - 6, 12, 12);
             
             g2d.setFont(new Font("Arial", Font.BOLD, 13));
-            
             g2d.setColor(Color.WHITE);
             g2d.drawString(p.getId(), p.getX() + 11, p.getY() - 9);
             g2d.setColor(Color.BLACK);
