@@ -159,10 +159,20 @@ public class MainFrame extends JFrame {
         }
 
         controlador.setVisualizationMode(modo);
+        long inicioTiempo = System.nanoTime();
         PathResult<MapPoint> resultado = controlador.executeSearch(algoritmo, inicio, destino);
+        long finTiempo = System.nanoTime();
+        
+        double duracionSegundos = (finTiempo - inicioTiempo) / 1_000_000_000.0;
 
         if (resultado.getPath().isEmpty() && !inicio.equals(destino)) {
             JOptionPane.showMessageDialog(this, "No se encontró una ruta entre los nodos seleccionados.", "Información",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } else {
+
+            JOptionPane.showMessageDialog(this, 
+                    "Algoritmo: " + algoritmo + "\nTiempo de procesamiento: " + duracionSegundos + " segundos", 
+                    "Rendimiento de Búsqueda", 
                     JOptionPane.INFORMATION_MESSAGE);
         }
 
