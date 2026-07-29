@@ -159,23 +159,35 @@ public class MainFrame extends JFrame {
         }
 
         controlador.setVisualizationMode(modo);
+
         long inicioTiempo = System.nanoTime();
         PathResult<MapPoint> resultado = controlador.executeSearch(algoritmo, inicio, destino);
         long finTiempo = System.nanoTime();
         
         double duracionSegundos = (finTiempo - inicioTiempo) / 1_000_000_000.0;
+        int cantidadAristas = 0;
+        if (resultado.getPath() != null && !resultado.getPath().isEmpty()) {
+            cantidadAristas = resultado.getPath().size() - 1; 
+        }
+
+        int nodosVisitados = 0;
+        if (resultado.getVisitados() != null) {
+            nodosVisitados = resultado.getVisitados().size();
+        }
 
         if (resultado.getPath().isEmpty() && !inicio.equals(destino)) {
             JOptionPane.showMessageDialog(this, "No se encontró una ruta entre los nodos seleccionados.", "Información",
                     JOptionPane.INFORMATION_MESSAGE);
         } else {
-
+            
             JOptionPane.showMessageDialog(this, 
-                    "Algoritmo: " + algoritmo + "\nTiempo de procesamiento: " + duracionSegundos + " segundos", 
-                    "Rendimiento de Búsqueda", 
+                    "Algoritmo: " + algoritmo + 
+                    "\nTiempo: " + duracionSegundos + " s" +
+                    "\nNodos visitados: " + nodosVisitados + 
+                    "\nCantidad de aristas: " + cantidadAristas, 
+                    "Métricas de Rendimiento", 
                     JOptionPane.INFORMATION_MESSAGE);
         }
-
         panelMapa.iniciarAnimacion(resultado, modo);
     }
 }
