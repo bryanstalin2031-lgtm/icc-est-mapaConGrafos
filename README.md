@@ -83,6 +83,51 @@ El algoritmo **A\*** es una evolución heurística y avanzada de Dijkstra, altam
 * **Control de Versiones:** Git y GitHub.
 
 ## 5. Diagrama UML y Explicación
+classDiagram
+    direction LR
+
+    class App {
+        +main(args: String[])
+        -conectar(controller: MapController, id1: String, id2: String)
+    }
+
+    class MapController {
+        -Graph<MapPoint> graph
+        -VisualizationMode visualizationMode
+        +addPoint(id: String, x: int, y: int)
+        +addConnection(p1: MapPoint, p2: MapPoint, isDirected: boolean)
+        +ejecutarBusqueda(algorithm: String, start: MapPoint, end: MapPoint) PathResult
+        +getGraph() Graph
+        +setVisualizationMode(mode: VisualizationMode)
+    }
+
+    class MapPoint {
+        -String id
+        -int x
+        -int y
+        +getId() String
+        +getX() int
+        +getY() int
+    }
+
+    class MainFrame {
+        -MapController controller
+        -MapPanel panelMapa
+        +initComponents()
+    }
+
+    class PathResult {
+        -List<MapPoint> path
+        -List<MapPoint> visitedNodes
+        +getPath() List
+        +getVisitedNodes() List
+    }
+
+    App --> MapController : inicializa
+    App --> MainFrame : instancia
+    MainFrame --> MapController : utiliza
+    MapController --> MapPoint : gestiona
+    MapController --> PathResult : retorna
 
 * **`Graph<T>`:** Administra la lista de adyacencia mediante un mapa enlazado y las distintas acciones de inserción y eliminación de vértices y aristas.
 * **`MapController`:** Actúa como el intermediario (Controlador en MVC) gestionando los requeriminetos del usuario y la ejecución de los algoritmos de búsqueda.
