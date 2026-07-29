@@ -174,3 +174,18 @@ Proceso paso a paso:
 
 ---
 ## 12. Recomendaciones y Posibles Aplicaciones Futuras
+
+### Recomendaciones TÉCNICAS Y DE MEJORA
+## 12. Recomendaciones y Posibles Aplicaciones Futuras
+
+### Recomendaciones
+* **Mejorar el rendimiento de los algoritmos:** Para mapas con miles de nodos, convendría implementar colas de prioridad más eficientes (como un *Fibonacci Heap*) y optimizar las listas de adyacencia. Esto reduciría significativamente los tiempos de cómputo en búsquedas masivas.
+* **Integrar coordenadas reales (GPS):** Actualmente el mapa trabaja con posiciones fijas en píxeles. Una gran mejora sería migrar a coordenadas de latitud y longitud reales (usando proyecciones como Mercator) para lograr una ubicación geográfica precisa.
+* **Optimizar la fluidez de la interfaz:** Es recomendable separar completamente el procesamiento de los algoritmos (AStarPathFinder.java) del renderizado en pantalla (MapPanel.java). 
+* **Soportar formatos estándar de mapas:** Sería ideal expandir el módulo de persistencia para que la aplicación pueda importar y exportar grafos en formatos comunes como JSON, GeoJSON o KML, en lugar de depender únicamente de archivos de texto locales.
+
+### Posibles Aplicaciones Futuras
+* **Navegación urbana y transporte público:** El algoritmo A* puede adaptarse para calcular rutas considerando el tráfico en tiempo real, el sentido de las calles, semáforos o transbordos de líneas de autobús.
+* **Optimización de entregas y logística:** Podría evolucionar para resolver problemas de ruteo de vehículos (VRP) o del viajante (TSP), ayudando a empresas de delivery a calcular la mejor secuencia de entregas.
+* **Guía de navegación dentro del campus:** Se puede aplicar para crear un mapa interactivo de interiores que guíe a estudiantes y visitantes a través de los edificios, facultades y aulas de la universidad.
+* **Rutas de evacuación y emergencias:** Permite simular situaciones de riesgo deshabilitando calles o nodos bloqueados en tiempo real, trazando instantáneamente la ruta más segura hacia zonas de evacuación (como parques o canchas cercanas).
