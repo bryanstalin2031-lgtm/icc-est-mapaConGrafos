@@ -182,12 +182,12 @@ Proceso paso a paso:
 ## 11. Conclusión Individual por Integrante
 * Bryam Carchi: La realización de estructuras de grafos personalizadas me permitió comprender de mejor manera la diferencia entre recorridos ciegos (BFS/DFS) y algoritmos con mejor optimizacion de rutas (Dijkstra/A*), en donde mediante la ejecucuion se visualizo que el A* nos dio la mejor ruta, esta fue la mas directa y gastando menos recursos.
 * Xavier Aucay : Con este proyecto fortalecí mis conocimientos sobre grafos y algoritmos de búsqueda, comprendí cuando conviene utilizar BFS, DFS, Dijkstra o A*. Además, mejoré mis habilidades en Java y entendi la importancia de las estructuras de datos para resolver problemas de rutas de manera mas eficiente
-
+* Andrea Sagbay: La creación de este sistema me ayudó a valorar la importancia del diseño de datos antes de escribir el código. Implementar la persistencia y la estructura del mapa me enseñó que la eficiencia de un algoritmo depende en gran medida de cómo están almacenados sus datos, logrando que el recorrido de rutas sea fluido y que el mapa pueda escalarse a futuro sin perder rendimiento.
 
 ---
 ## 12. Recomendaciones y Posibles Aplicaciones Futuras
 ### Recomendaciones
-* **Mejorar el rendimiento de los algoritmos:** Para mapas con miles de nodos, convendría implementar colas de prioridad más eficientes (como un *Fibonacci Heap*) y optimizar las listas de adyacencia. Esto reduciría significativamente los tiempos de cómputo en búsquedas masivas.
+* **Mejorar el rendimiento de los algoritmos:** Para mapas con miles de nodos, convendría implementar colas de prioridad más eficientes (como un Fibonacci Heap) y optimizar las listas de adyacencia. Esto reduciría significativamente los tiempos de cómputo en búsquedas masivas.
 * **Integrar coordenadas reales (GPS):** Actualmente el mapa trabaja con posiciones fijas en píxeles. Una gran mejora sería migrar a coordenadas de latitud y longitud reales (usando proyecciones como Mercator) para lograr una ubicación geográfica precisa.
 * **Optimizar la fluidez de la interfaz:** Es recomendable separar completamente el procesamiento de los algoritmos (AStarPathFinder.java) del renderizado en pantalla (MapPanel.java). 
 * **Soportar formatos estándar de mapas:** Sería ideal expandir el módulo de persistencia para que la aplicación pueda importar y exportar grafos en formatos comunes como JSON, GeoJSON o KML, en lugar de depender únicamente de archivos de texto locales.
