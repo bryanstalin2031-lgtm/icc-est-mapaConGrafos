@@ -22,14 +22,17 @@ public class MapPanel extends JPanel {
     private final MapController controller;
     private final MainFrame parentFrame;
     private BufferedImage backgroundImage;
-    
+
     private Timer timer;
     private List<MapPoint> visitedList = new ArrayList<>();
     private List<MapPoint> pathList = new ArrayList<>();
     private int visitedIndex = 0;
     private int pathIndex = 0;
-    
-    public enum EditMode { NONE, ADD_NODE, ADD_EDGE_START, ADD_EDGE_END, DELETE_NODE }
+
+    public enum EditMode {
+        NONE, ADD_NODE, ADD_EDGE_START, ADD_EDGE_END, DELETE_NODE
+    }
+
     private EditMode currentEditMode = EditMode.NONE;
     private MapPoint tempEdgeStart = null;
 
@@ -37,16 +40,15 @@ public class MapPanel extends JPanel {
         this.controller = controller;
         this.parentFrame = parentFrame;
         try {
-            File archivoImagen = new File("src/resources/maps/map.png"); 
-            if (archivoImagen.exists()) {
-                backgroundImage = ImageIO.read(archivoImagen);
-                System.out.println(archivoImagen.getPath());
-                repaint(); 
+            
+            java.io.InputStream is = getClass().getResourceAsStream("/resources/maps/map.png");
+            if (is != null) {
+                backgroundImage = javax.imageio.ImageIO.read(is);
             } else {
-                System.out.println("No se encontró el archivo de imagen");
+                System.err.println("No se pudo encontrar la imagen del mapa en los recursos.");
             }
         } catch (Exception e) {
-            System.out.println("Error al leer la imagen: " + e.getMessage());
+            e.printStackTrace();
         }
         this.addMouseListener(new MouseAdapter() {
             @Override
@@ -70,8 +72,8 @@ public class MapPanel extends JPanel {
             tempEdgeStart = encontrarNodoEn(e.getX(), e.getY());
             if (tempEdgeStart != null) {
                 currentEditMode = EditMode.ADD_EDGE_END;
-                JOptionPane.showMessageDialog(MapPanel.this, 
-                        "Nodo inicial: " + tempEdgeStart.getId() + ". Haz clic en el nodo destino.", 
+                JOptionPane.showMessageDialog(MapPanel.this,
+                        "Nodo inicial: " + tempEdgeStart.getId() + ". Haz clic en el nodo destino.",
                         "Conectar Nodos", JOptionPane.INFORMATION_MESSAGE);
             }
         } else if (currentEditMode == EditMode.ADD_EDGE_END) {
@@ -81,7 +83,8 @@ public class MapPanel extends JPanel {
                 currentEditMode = EditMode.ADD_EDGE_START;
                 tempEdgeStart = null;
                 repaint();
-                JOptionPane.showMessageDialog(MapPanel.this, "¡Calle conectada con éxito!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(MapPanel.this, "¡Calle conectada con éxito!", "Éxito",
+                        JOptionPane.INFORMATION_MESSAGE);
             } else if (tempEdgeEnd == null) {
                 currentEditMode = EditMode.ADD_EDGE_START;
                 tempEdgeStart = null;
@@ -89,17 +92,18 @@ public class MapPanel extends JPanel {
         } else if (currentEditMode == EditMode.DELETE_NODE) {
             MapPoint nodeToDelete = encontrarNodoEn(e.getX(), e.getY());
             if (nodeToDelete != null) {
-                int confirm = JOptionPane.showConfirmDialog(MapPanel.this, 
-                        "¿Deseas eliminar el nodo '" + nodeToDelete.getId() + "' y todas sus calles?", 
+                int confirm = JOptionPane.showConfirmDialog(MapPanel.this,
+                        "¿Deseas eliminar el nodo '" + nodeToDelete.getId() + "' y todas sus calles?",
                         "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
-                
+
                 if (confirm == JOptionPane.YES_OPTION) {
                     controller.removePoint(nodeToDelete);
                     if (parentFrame != null) {
                         parentFrame.actualizarSelectoresNodos();
                     }
                     repaint();
-                    JOptionPane.showMessageDialog(MapPanel.this, "Nodo eliminado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(MapPanel.this, "Nodo eliminado correctamente.", "Éxito",
+                            JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         }
@@ -111,7 +115,8 @@ public class MapPanel extends JPanel {
     }
 
     private MapPoint encontrarNodoEn(int x, int y) {
-        if (controller == null || controller.getGraph() == null) return null;
+        if (controller == null || controller.getGraph() == null)
+            return null;
 
         for (Node<MapPoint> node : controller.getGraph().getNodes()) {
             MapPoint p = node.getValue();
@@ -167,7 +172,8 @@ public class MapPanel extends JPanel {
             g2d.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
         }
 
-        if (controller == null || controller.getGraph() == null) return;
+        if (controller == null || controller.getGraph() == null)
+            return;
 
         g2d.setColor(Color.GRAY);
         g2d.setStroke(new BasicStroke(3));
@@ -207,7 +213,7 @@ public class MapPanel extends JPanel {
             MapPoint p = node.getValue();
             g2d.setColor(Color.BLACK);
             g2d.fillOval(p.getX() - 6, p.getY() - 6, 12, 12);
-            
+
             g2d.setFont(new Font("Arial", Font.BOLD, 13));
             g2d.setColor(Color.WHITE);
             g2d.drawString(p.getId(), p.getX() + 11, p.getY() - 9);
