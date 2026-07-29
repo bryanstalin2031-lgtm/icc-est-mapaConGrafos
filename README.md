@@ -165,8 +165,19 @@ Proceso paso a paso:
 ---
 
 ## 10. Tabla Comparativa de Resultados
+### Tabla 1. Comparación de Rendimiento de Algoritmos de Búsqueda
 
----
+| Caso | Algoritmo | Inicio | Destino | Nodos visitados | Cantidad de aristas | Tiempo |
+| :---: | :--- | :--- | :--- | :---: | :---: | :---: |
+| **1** | BFS | n1| n17 | 22|7 | 0.001521208s|
+| **1** | DFS | n1 | n17 | 11|10 |0.001257875s |
+| **1** | Dijkstra | n1 | n17 |18 | 7|0.002027875s |
+| **1** | A* | n1 | n17| 8|7 | 0.0020685s|
+| **2** | BFS | n16 | Universidad Politecnica | 59| 7| 0.002539542s|
+| **2** | DFS | n16| Universidad Politecnica| 46|38 | 0.002183959s|
+| **2** | Dijkstra | n16 | Universidad Politecnica | 51| 7| 0.00215417s|
+| **2** | A* | n16| Universidad Politecnica | 8| 7| 0.003384375s|
+
 
 ## 11. Conclusión Individual por Integrante
 * Bryam Carchi: La realización de estructuras de grafos personalizadas me permitió comprender de mejor manera la diferencia entre recorridos ciegos (BFS/DFS) y algoritmos con mejor optimizacion de rutas (Dijkstra/A*), en donde mediante la ejecucuion se visualizo que el A* nos dio la mejor ruta, esta fue la mas directa y gastando menos recursos.
