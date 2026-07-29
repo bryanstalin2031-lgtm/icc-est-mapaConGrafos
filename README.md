@@ -144,7 +144,7 @@ icc-est-mapaConGrafos/
 **Mapa con DFS**
 ![alt text](assets/MapaDFS.png)
 **Mapa con AEstrella**
-![alt text](assets/MapaA*.png)
+![alt text](assets/MapaA.png)
 **Mapa con Dijkstra**
 ![alt text](assets/MapaDijkstra.png)
 
