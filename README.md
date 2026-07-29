@@ -185,10 +185,6 @@ Proceso paso a paso:
 
 ---
 ## 12. Recomendaciones y Posibles Aplicaciones Futuras
-
-### Recomendaciones TÉCNICAS Y DE MEJORA
-## 12. Recomendaciones y Posibles Aplicaciones Futuras
-
 ### Recomendaciones
 * **Mejorar el rendimiento de los algoritmos:** Para mapas con miles de nodos, convendría implementar colas de prioridad más eficientes (como un *Fibonacci Heap*) y optimizar las listas de adyacencia. Esto reduciría significativamente los tiempos de cómputo en búsquedas masivas.
 * **Integrar coordenadas reales (GPS):** Actualmente el mapa trabaja con posiciones fijas en píxeles. Una gran mejora sería migrar a coordenadas de latitud y longitud reales (usando proyecciones como Mercator) para lograr una ubicación geográfica precisa.
