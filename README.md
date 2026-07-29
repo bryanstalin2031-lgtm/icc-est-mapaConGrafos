@@ -197,3 +197,35 @@ Proceso paso a paso:
 * **Optimización de entregas y logística:** Podría evolucionar para resolver problemas de ruteo de vehículos (VRP) o del viajante (TSP), ayudando a empresas de delivery a calcular la mejor secuencia de entregas.
 * **Guía de navegación dentro del campus:** Se puede aplicar para crear un mapa interactivo de interiores que guíe a estudiantes y visitantes a través de los edificios, facultades y aulas de la universidad.
 * **Rutas de evacuación y emergencias:** Permite simular situaciones de riesgo deshabilitando calles o nodos bloqueados en tiempo real, trazando instantáneamente la ruta más segura hacia zonas de evacuación (como parques o canchas cercanas).
+
+---
+### Preguntas de Análisis y Conclusiones
+
+* **¿Qué diferencias se observaron en el orden de exploración y comportamiento de BFS, DFS, Dijkstra y A\*?**
+  * **BFS (Breadth-First Search):** Explora por niveles de manera uniforme expandiéndose en amplitud. Visita una cantidad alta de nodos de forma exhaustiva sin priorizar direcciones.
+  * **DFS (Depth-First Search):** Explora en profundidad yendo por ramas largas antes de retroceder, lo que le lleva a recorrer muchos nodos y encontrar caminos indirectos.
+  * **Dijkstra:** Explora de forma radial ponderando los costos acumulados reales, mostrando un comportamiento intermedio y garantizando siempre el camino mínimo.
+  * **A\*:** Utiliza la heurística (distancia estimada al destino) para guiarse directamente, siendo el más eficiente en cuanto a exploración y visitando un número mínimo de nodos.
+
+* **¿BFS encontró una ruta con menor cantidad de aristas en los casos evaluados?**
+  Sí. Al ser un algoritmo no ponderado que busca por amplitud, BFS **siempre garantiza el camino más corto en número de saltos (aristas)**, igualando en los casos evaluados la optimización lograda por Dijkstra y A\* (7 aristas).
+
+* **¿DFS encontró rutas diferentes y menos eficientes a las obtenidas con los demás algoritmos?**
+  Sí, notablemente. DFS no garantiza optimalidad; debido a su naturaleza de explorar en profundidad, en el Caso 1 arrojó un camino de **10 aristas** y en el Caso 2 generó una ruta ineficiente de **38 aristas** para llegar al mismo destino.
+
+* **¿Qué algoritmo visitó más nodos en cada caso?**
+  * En el **Caso 1 (n1 a n17):** **BFS** fue el que más nodos exploró con **22 nodos** (superando a Dijkstra con 18, DFS con 11 y dejando muy por detrás a A\* con solo 8).
+  * En el **Caso 2 (n16 a UPS):** **BFS** volvió a ser el que más recursos de exploración gastó con **59 nodos** (seguido de Dijkstra con 51, DFS con 46 y A\* con solo 8 gracias a su guía heurística).
+
+* **¿Los tiempos de ejecución fueron suficientes para determinar cuál algoritmo es mejor?**
+  A nivel de milisegundos netos de CPU, todos los algoritmos se ejecutan en rangos extremadamente bajos y similares (entre $0.0012\text{s}$ y $0.0033\text{s}$). Por lo tanto, el tiempo por sí solo no es un diferenciador absoluto debido a la escala pequeña del grafo; sin embargo, al combinarlo con los **nodos visitados** y la **cantidad de aristas**, se demuestra la superioridad de **A\*** en eficiencia.
+
+* **¿Cómo influyó la estructura del grafo en el comportamiento de cada algoritmo?**
+  La topología del mapa (con 67 nodos interconectados en malla) provoca que DFS caiga en ramas profundas innecesarias. Por el contrario, la disposición espacial permitió que **A\* ** utilizara de forma óptima las coordenadas cartesianas de los nodos como heurística para recortar drásticamente el espacio de búsqueda.
+
+* **¿Qué ventajas aporta separar la lógica del algoritmo de la visualización?**
+  Permite que los algoritmos procesen los cálculos matemáticos de rutas limpiamente en memoria de forma inmediata, mientras que los componentes gráficos (`MainFrame` y el panel de animación) se encargan exclusivamente de renderizar de manera fluida los pasos y la interfaz de usuario sin bloquear el hilo principal (`SwingUtilities`).
+
+* **¿Qué mejoras podrían implementarse para trabajar con calles ponderadas reales?**
+  * **Distancias físicas y pesos:** Reemplazar las conexiones simples por aristas con pesos basados en la distancia real entre coordenadas o tiempos de tráfico.
+  * **Estructuras de datos optimizadas:** Integrar una cola de prioridad basada en montículos (`PriorityQueue`) para optimizar el rendimiento de Dijkstra y A\* en grafos urbanos densos.
